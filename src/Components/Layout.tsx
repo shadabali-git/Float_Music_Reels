@@ -13,7 +13,10 @@ const Layout: React.FC= () => {
         justifyContent: 'center',
         alignItems: 'center',
         width: '100vw',
+        overflowX: 'hidden',
+        overflowY: 'auto',  
         height: '100vh',
+        bgcolor: 'background.default',
       }}
     >
       <Outlet/>

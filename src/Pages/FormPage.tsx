@@ -41,6 +41,7 @@ const FormPage: React.FC = () => {
         
       <Typography variant="body1" color="primary" sx={{ fontWeight: 'bold' }} gutterBottom>
         User Information Form
+        
       </Typography>
       <form onSubmit={handleSubmit}>
         <TextField label="Name" inputRef={nameRef} fullWidth margin="normal" required />

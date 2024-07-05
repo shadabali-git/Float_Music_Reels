@@ -16,9 +16,10 @@ const Layout: React.FC= () => {
         overflowX: 'hidden',
         overflowY: 'auto',  
         height: '100vh',
-        bgcolor: 'background.default',
+        
       }}
     >
+      
       <Outlet/>
     </Box>
   );

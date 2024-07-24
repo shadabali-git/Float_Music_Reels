@@ -10,4 +10,8 @@
   interface ImportMeta {
     readonly env: ImportMetaEnv;
   }
-  
+  declare module '*.svg' {
+    const content: any;
+    export default content;
+  }
+  declare module "*.module.css";

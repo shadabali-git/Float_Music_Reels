@@ -20,12 +20,14 @@ export default {
       },
       fontFamily:{
         'poppins':['Poppins', 'sans-serif']
-      }
-
+      },
+     
     },
   },
   plugins: [
-    require('daisyui'),
+    require('daisyui')
+   
+      
   ],
 }
 

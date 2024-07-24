@@ -15,6 +15,7 @@ const ReelsBox: React.FC = () => {
 
           setLoading(true);
           fetchPosts(1,page).then((data:PostProps[]) => {
+          // console.log(data);
           setPosts([...data]);
           setLoading(false);
         });
@@ -36,7 +37,7 @@ const ReelsBox: React.FC = () => {
             if (entries[0].isIntersecting) {
               setPage((prevPage) => prevPage + 1); // Trigger loading of new posts by changing page number
             }
-          }, { threshold: 0.5});
+          })
     
           if (node) observer.current.observe(node);
         },
@@ -68,7 +69,7 @@ const ReelsBox: React.FC = () => {
               
                 
                   <div className='text-white bg-gray p-5 rounded-lg'>
-                    <audio autoPlay> 
+                    <audio controls> 
                        <source src={post.videoUrl} type="audio/mp3" onPlay={()=>{console.log("on play")}} onPlaying={()=>console.log("palying")} />
                     </audio>
                     <p className='text-white capitalize text-sm'>{post.tag}</p>

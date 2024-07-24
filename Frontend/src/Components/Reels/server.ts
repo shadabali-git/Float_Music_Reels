@@ -9,15 +9,23 @@ export type PostProps =
 
 const fetchPosts= async (limit:number,page:number) => {
     // console.log('fetchPosts');
-    const response= await fetch(`http://localhost:3000/videos`)
+    const response= await fetch(`${import.meta.env.VITE_BACKEND_URL}/videos`)
     const data:PostProps[]= await response.json()
-       const result:PostProps[]=[];
 
+       const result:PostProps[]=[];
+    //    empty the result array
+       result.length=0;
+
+      
+        
        data.map((post)=>{
-        if(data[0].id <= page){
+        if(post.id <= page){
+                
               result.push(post);
          }
          })
+
+
 
   
 

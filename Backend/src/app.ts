@@ -1,38 +1,11 @@
-// import express from 'express';
-// import mongoose from 'mongoose';
-// import musicRouter from './routes/music';
-// import dotenv from 'dotenv';
-
-// const app = express();
-// dotenv.config();
-
-// mongoose.connect('mongodb://localhost/music-api')
-//   .then(() => console.log('Connected to MongoDB'))
-//   .catch(err => console.error('Could not connect to MongoDB', err));
-
-// app.get('/',(req,res)=>{
-
-//     res.send('Hello World');
-
-// })
-
-// app.use(express.json());
-// app.use('/music', musicRouter);
-
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
-// });
-
-
 import  express ,{ Request, Response, NextFunction } from 'express';
-
+import {FRONT_END_URL} from '../config';
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 4000;
 
 //  cors 
 app.use((req:Request, res:Response, next:NextFunction) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin',FRONT_END_URL);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();

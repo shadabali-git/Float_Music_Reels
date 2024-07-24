@@ -18,14 +18,17 @@ const ReelsBox: React.FC = () => {
   const Navi = useNavigate();
   // const audioRef = useRef();
 
+       
+
       const call=async()=>{
 
           setLoading(true);
+          setHasMore(true);
           // if(page>=10){
           //   setHasMore(false);
           //   return;
           // }
-          fetchPosts(1,page).then((data:PostProps[]) => {
+          fetchPosts(0,page).then((data:PostProps[]) => {
           // console.log(data);
           setPosts([...data]);
           setLoading(false);

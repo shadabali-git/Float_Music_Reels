@@ -1,5 +1,5 @@
 import  express ,{ Request, Response, NextFunction } from 'express';
-import {FRONT_END_URL} from '../config';
+import {FRONT_END_URL} from './config';
 const app = express();
 const port = process.env.PORT || 4000;
 

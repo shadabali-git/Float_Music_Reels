@@ -100,7 +100,7 @@ const ReelsBox: React.FC = () => {
 
   return (
     <>
-                    {/* <button  className="absolute top-1 left-2" onClick={increasepage}>Start</button> */}
+                    
       <div className='w-screen h-screen lg:p-10 md:p-8 p-3  bg-black  overflow-hidden flex justify-center items-center'>
 
         <div className={`h-[90%] bg-[url('https://www.refactoringui.com/_next/static/media/book.5380927448c9872170bbc9fc9e5828c4.png')] w-96 overflow-y-scroll`}>

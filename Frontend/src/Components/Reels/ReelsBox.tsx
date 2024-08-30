@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState ,useCallback} from 'react';
 import {fetchPosts} from './server';
 import {PostProps} from './server';
-import Symbol from '../../assets/index'
+// import Symbol from '../../assets/index'
 // import Style from './Reel.module.css'
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
@@ -96,16 +96,63 @@ const ReelsBox: React.FC = () => {
       }, [posts]);
 
 
+      const containerRef = useRef<HTMLDivElement>(null);
+      // const [isScrolling, setIsScrolling] = useState(false);
+      const scrollTimeout = useRef<number | undefined>();
+    
+      const handleScroll = () => {
+      
+    
+        if (scrollTimeout.current) {
+          clearTimeout(scrollTimeout.current);
+        }
+    
+        scrollTimeout.current = window.setTimeout(() => {
+         
+          snapScroll();
+        }, 100); // Adjust this delay as needed
+      };
+    
+      const snapScroll = () => {
+        const container = containerRef.current;
+        if (!container) return;
+    
+        const scrollPosition = container.scrollTop;
+        const reelHeight = container.clientHeight;
+        const totalHeight = container.scrollHeight;
+    
+        // Determine the index of the current reel
+        const currentIndex = Math.floor(scrollPosition / reelHeight);
+        const currentReelTop = currentIndex * reelHeight;
+    
+        // Calculate how much the user has scrolled relative to the current reel
+        const offset = scrollPosition - currentReelTop;
+    
+        // Set the threshold to snap (e.g., 50% of the reel height)
+        const threshold = reelHeight / 2;
+    
+        if (offset > threshold && scrollPosition < totalHeight - reelHeight) {
+          // Scroll to the next reel
+          container.scrollTo({ top: currentReelTop + reelHeight, behavior: 'smooth' });
+        } else {
+          // Scroll back to the current reel
+          container.scrollTo({ top: currentReelTop, behavior: 'smooth' });
+        }
+      };
+
+     
+
 
 
   return (
     <>
                     
-      <div className='w-screen h-screen lg:p-10 md:p-8 p-3  bg-black  overflow-hidden flex justify-center items-center'>
+      <div className='w-screen h-screen lg:p-10 md:p-8 p-3  bg-black  overflow-hidden flex justify-center items-center rounded-lg'>
 
-        <div className={`h-[90%] bg-[url('https://www.refactoringui.com/_next/static/media/book.5380927448c9872170bbc9fc9e5828c4.png')] w-96 overflow-y-scroll`}>
+        <div className={`h-[90%] bg-[url('https://www.refactoringui.com/_next/static/media/book.5380927448c9872170bbc9fc9e5828c4.png')] rounded-lg w-96 overflow-y-scroll scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-gray-200 `}  ref={containerRef}
+      onScroll={handleScroll}>
 
-         <button className={`p-4 text-3xl`} onClick={()=>{Navi('/dashboard')}}> <IoMdArrowRoundBack /> </button>
+         <button className={`p-4 text-3xl absolute`} onClick={()=>{Navi('/dashboard')}}> <IoMdArrowRoundBack /> </button>
 
        
            
@@ -124,20 +171,21 @@ const ReelsBox: React.FC = () => {
 
               
                 
-                  <div className={`text-white w-72 h-72 bg-black-800 p-5 rounded-full animate-spin`}>
+                  <div className={`text-white w-72 h-72 bg-black-800 p-5 rounded-lg border-black border-2 border-solid flex justify-center items-center`}>
                     <audio loop ref={el => {
                     if (el) audioRefs.current.set(index, el);
                   }}> 
                        <source src={post.videoUrl} type="audio/mp3" />
                     </audio>
-                    <img src={Symbol.react} className='w-32 h-32' alt="" />
+
+                    {/* <img src={Symbol.react} className='w-32 h-32' alt="" /> */}
                    
-                    {/* <p className='text-white capitalize text-sm'>{post.tag}</p> */}
+                    <p className='text-white capitalize text-sm'>{post.tag}</p>
                   </div>
 
 
                                
-  {/* <div className={`card__title ${Style.textShadow}`}>Runaway</div> */}
+  
   <div className="card__subtitle">Smalltown Boy , Shane D</div>
                 
               

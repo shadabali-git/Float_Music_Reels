@@ -3,11 +3,9 @@ import React from 'react'
 const Loading:React.FC = () => {
 
 
-    return (
-        <>
-         <span className="loading loading-spinner loading-lg"></span>
-        </>
-    )
+    return <span className="loading loading-spinner loading-lg"></span>
+       
+    
 
 
 }
